@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${Nombre}">ControladorNombre</title>
+
+    <!-- Al ser HTML se le puede agregar CSS para darle estilo.
+    Mezclar todo en un solo archivo no es una buena práctica, pero se
+    hizo así para darle más estilo a la entrega y recordar un poco de CSS.
+    -->
+    
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #eef4f8;
+            color: #2c3e50;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .contPrin {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+
+        .nombre {
+            background-color: #e2f0f9;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        h1, h2 {
+            margin: 8px 0 0;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 1.6rem; }
+        h2 { font-size: 1.3rem; }
+
+        .descripcion {
+            margin-top: 25px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="contPrin">
+        <label>Nombre:</label>
+        <div class="nombre">
+            <h1 th:text="${Nombre}"></h1>
+        </div>
+
+
+        <label>Número de lista:</label>
+        <h1 th:text="${Lista}"></h1>
+
+        <label>Número de control:</label>
+        <h2 th:text="${Numero}"></h2>
+
+        <label>Descripción</label>
+        <p class="descripcion">
+            Este HTML tiene el objetivo de crear una combinación entre la vista
+            y el controlador, como en el video, de igual forma busco integrar el 
+            uso de la IA solo para darle un estilo básico dado que no es el punto
+            principal, la lógica, la idea y la distrubución de los elementos es propia
+        </p>
+
+        
+    </div>
+</body>
+</html>
