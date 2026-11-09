@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzas</title>
+
+    <!-- Al ser HTML se le puede agregar CSS para darle estilo.
+    Mezclar todo en un solo archivo no es una buena práctica, pero se
+    hizo así para darle más estilo a la entrega y recordar un poco de CSS.
+    -->
+
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #eef4f8;
+            color: #2c3e50;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .contPrin {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            margin-top: 6px;
+            border: 1px solid #ccd6dd;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background-color: #3498db;
+            color: #ffffff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        h1 {
+            margin: 25px 0 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccd6dd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e2f0f9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contPrin">
+
+        <h1>Registrar pizza</h1>
+
+        
+        <form th:action="@{/pizzas_info}" th:object="${pizzaForm}" method="post">
+            <label>Nombre:</label>
+            <input type="text" th:field="*{nombre}">
+
+            <label>Ingredientes:</label>
+            <input type="text" th:field="*{ingredientes}">
+
+            <label>Precio:</label>
+            <input type="number" step="0.01" th:field="*{precio}">
+
+            <br><br>
+            <button type="submit">Guardar pizza</button>
+        </form>
+
+        <h1>Lista de pizzas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Ingredientes</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- este unico th:each sirve para recorrer la lista de pizzas que manda el controlador -->
+                <tr th:each="p : ${pizzas}">
+                    <td th:text="${p.nombre}"></td>
+                    <td th:text="${p.ingredientes}"></td>
+                    <td th:text="${p.precio}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

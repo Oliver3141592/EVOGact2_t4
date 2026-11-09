@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${Nombre}">ControladorNombre</title>
+    <title >ControladorNombre</title>
 
     <!-- Al ser HTML se le puede agregar CSS para darle estilo.
     Mezclar todo en un solo archivo no es una buena práctica, pero se
@@ -52,7 +52,7 @@
         }
 
         h1 { font-size: 1.6rem; }
-        h2 { font-size: 1.3rem; }
+        h2 { font-size: 1.0rem; }
 
         .descripcion {
             margin-top: 25px;
@@ -67,27 +67,65 @@
 
 <body>
     <div class="contPrin">
-        <label>Nombre:</label>
+        <label>Nombre y apellido del empleado:</label>
         <div class="nombre">
-            <h1 th:text="${Nombre}"></h1>
+            <h1 th:text="${Empleado.nombre + ' ' + Empleado.apellido}"></h1>
         </div>
 
+        <label>ID:</label>
+        <h2 th:text="${Empleado.id}"></h2>
 
-        <label>Número de lista:</label>
-        <h1 th:text="${Lista}"></h1>
+        <label>Dirección:</label>
+        <h2 th:if="${Empleado.direccion != null}" th:text="${Empleado.direccion}"></h2>
+        <h2 th:if="${Empleado.direccion == null}" th:text="${'Sin dirección'}"> </h2>
 
-        <label>Número de control:</label>
-        <h2 th:text="${Numero}"></h2>
+        <!-- Tambien se puede hacer de esta manera usando el operador ternario:
+        <h2 th:text="${Empleado.direccion != null ? Empleado.direccion : 'Sin dirección'}"></h2> 
+        -->
 
-        <label>Descripción</label>
+        <label>Puesto:</label>
+        <h2 th:text="${Empleado.puesto}"></h2>
+
+        <label>Edad:</label>
+        <h2 th:text="${Empleado.edad}"></h2>
+
+        <label>Teléfono:</label>
+        <h2 th:text="${Empleado.telefono}"></h2>
+
+        <label>Descripción:</label>
         <p class="descripcion">
-            Este HTML tiene el objetivo de crear una combinación entre la vista
-            y el controlador, como en el video, de igual forma busco integrar el 
-            uso de la IA solo para darle un estilo básico dado que no es el punto
-            principal, la lógica, la idea y la distrubución de los elementos es propia
+            Este HTML es una adaptación propia de lo que hizo la persona del video
+            fue entendible lo que realizó y pensé que sería buena idea practicar con
+            cosas propias que he aprendido
+
+            Actualización video 12: Hubieron modificaciones sobre las directivas de Thymeleaf
         </p>
 
-        
+        <h1>Lista de Empleados</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Dirección</th>
+                    <th>Puesto</th>
+                    <th>Edad</th>
+                    <th>Teléfono</th>
+                    <th>Departamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="emp : ${Empleados}">
+                <td th:text="${emp.nombre}"></td>
+                <td th:text="${emp.apellido}"></td>
+                <td th:text="${emp.direccion}"></td>
+                <td th:text="${emp.puesto}"></td>
+                <td th:text="${emp.edad}"></td>
+                <td th:text="${emp.telefono}"></td>
+                <td th:text="${emp.id}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
